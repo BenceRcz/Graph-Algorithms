@@ -60,17 +60,6 @@ void delete_matrix(short** a, const ui& row) {
 	delete[] a;
 }
 
-// This function prints a matrix of size n * m
-void print_matrix(short** a, const ui& row, const ui& col) {
-	for (ui i = 0; i < row; ++i) {
-		for (ui j = 0; j < col; ++j) {
-			cout << "   " << a[i][j];
-		}
-		cout << endl;
-	}
-	cout << endl;
-}
-
 // This function creates and returns an incidence matrix out of a given adj_matrix
 short** create_inc_matrix(short** adj_matrix, const ui& n, const ui& m) {
 	short** inc_matrix = create_matrix(n, m);
@@ -120,17 +109,6 @@ vector<vector<pair<ui, short>>> create_adj_list(short** inc_matrix, const ui& n,
 	return list;
 }
 
-// This function prints an adjacency list
-void print_adj_list(const vector<vector<pair<ui, short>>>& adj_list, const ui& n) {
-	for (ui i = 0; i < n; ++i) {
-		cout << i + 1 << ": ";
-		for (ui j = 0; j < adj_list[i].size(); ++j) {
-			cout << "-> " << adj_list[i][j].first << ": " << adj_list[i][j].second << " ";
-		}
-		cout << endl;
-	}
-}
-
 // This function creates an edge list out of an adjacency list
 vector<link> create_edge_list(const vector<vector<pair<ui, short>>>& adj_list, const ui& n) {
 	vector<link> links;
@@ -140,14 +118,6 @@ vector<link> create_edge_list(const vector<vector<pair<ui, short>>>& adj_list, c
 		}
 	}
 	return links;
-}
-
-// This function prints a vector
-template <typename T>
-void print_vector(const vector<T>& vec) {
-	for (ui i = 0; i < vec.size(); ++i) {
-		cout << vec[i] << endl;
-	}
 }
 
 // This function retreives the isolated nodes from the adjacency matrix
@@ -211,6 +181,36 @@ bool is_regular(const ui& n, short** adj_matrix) {
 	return true;
 }
 
+// This function prints a vector
+template <typename T>
+void print_vector(const vector<T>& vec) {
+	for (ui i = 0; i < vec.size(); ++i) {
+		cout << vec[i] << endl;
+	}
+}
+
+// This function prints a matrix of size n * m
+void print_matrix(short** a, const ui& row, const ui& col) {
+	for (ui i = 0; i < row; ++i) {
+		for (ui j = 0; j < col; ++j) {
+			cout << "   " << a[i][j];
+		}
+		cout << endl;
+	}
+	cout << endl;
+}
+
+// This function prints an adjacency list
+void print_adj_list(const vector<vector<pair<ui, short>>>& adj_list, const ui& n) {
+	for (ui i = 0; i < n; ++i) {
+		cout << i + 1 << ": ";
+		for (ui j = 0; j < adj_list[i].size(); ++j) {
+			cout << "-> " << adj_list[i][j].first << ": " << adj_list[i][j].second << " ";
+		}
+		cout << endl;
+	}
+}
+
 int main() {
 	ui n, m;
 	short** adj_matrix = read("graph2.in", n, m);
@@ -238,5 +238,9 @@ int main() {
 	else {
 		cout << "The graph isn't regular" << endl;
 	}
+
+	delete_matrix(adj_matrix, n);
+	delete_matrix(inc_matrix, n);
+
 	return 0;
 }
