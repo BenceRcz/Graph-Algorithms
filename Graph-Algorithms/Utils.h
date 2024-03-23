@@ -21,7 +21,7 @@ void delete_matrix(short** a, const ui& row) {
 
 // This function reads the input from file named path
 // Returns adjacency matrix
-short** read(string path, ui& n, ui& m) {
+short** read_weighted_matrix(string path, ui& n, ui& m) {
 	ui from, to;
 	short weight;
 	ifstream f(path);
@@ -35,6 +35,24 @@ short** read(string path, ui& n, ui& m) {
 	}
 
 	return adj_matrix;
+}
+
+// This function reads the input from a file named path
+// Returns unweighted adjacency list
+vector<vector<ui>> read_unweighted_list(string path, ui&n, ui& m) {
+	vector<vector<ui>> adj_list;
+	ui from, to;
+	ifstream f(path);
+	f >> n >> m;
+	adj_list.resize(n);
+
+	for (ui i = 0; i < m; ++i) {
+		f >> from >> to;
+		adj_list[from - 1].push_back(to);
+		adj_list[to - 1].push_back(from);
+	}
+
+	return adj_list;
 }
 
 // This function prints a vector

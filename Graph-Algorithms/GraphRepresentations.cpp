@@ -147,7 +147,7 @@ bool is_regular(const ui& n, short** adj_matrix) {
 
 int main() {
 	ui n, m;
-	short** adj_matrix = read("graph2.in", n, m);
+	short** adj_matrix = read_weighted_matrix("graph2.in", n, m);
 	cout << "----------------ADJACENCY MATRIX----------------" << endl;
 	print_matrix(adj_matrix, n, n);
 	short** inc_matrix = create_inc_matrix(adj_matrix, n, m);
