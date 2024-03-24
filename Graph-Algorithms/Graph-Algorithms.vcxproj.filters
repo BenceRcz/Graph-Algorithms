@@ -30,4 +30,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="unweighted_graph1.in">
+      <Filter>Resource Files</Filter>
+    </None>
+  </ItemGroup>
 </Project>
