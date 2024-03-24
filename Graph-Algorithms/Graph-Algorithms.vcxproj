@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="GraphRepresentations.cpp" />
     <ClCompile Include="GraphTraversals.cpp" />
+    <ClCompile Include="Utils.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utils.h" />

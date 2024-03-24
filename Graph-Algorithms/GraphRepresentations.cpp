@@ -1,6 +1,3 @@
-#include <iostream>
-#include <fstream>
-#include <vector>
 #include "Utils.h"
 
 using namespace std;
@@ -145,36 +142,36 @@ bool is_regular(const ui& n, short** adj_matrix) {
 	return true;
 }
 
-int main() {
-	ui n, m;
-	short** adj_matrix = read_weighted_matrix("graph2.in", n, m);
-	cout << "----------------ADJACENCY MATRIX----------------" << endl;
-	print_matrix(adj_matrix, n, n);
-	short** inc_matrix = create_inc_matrix(adj_matrix, n, m);
-	cout << "----------------INCIDENCE MATRIX----------------" << endl;
-	print_matrix(inc_matrix, n, m);
-	vector<vector<pair<ui, short>>> adj_list = create_adj_list(inc_matrix, n, m);
-	cout << "-----------------ADJACENCY LIST-----------------" << endl;
-	print_adj_list(adj_list, n);
-	vector<link> links = create_edge_list(adj_list, n);
-	cout << "--------------------EDGE LIST-------------------" << endl;
-	print_vector(links);
-	vector<ui> isolated_nodes = get_isolated_nodes(adj_matrix, n);
-	cout << "-----------------ISOLATED NODES-----------------" << endl;
-	print_vector(isolated_nodes);
-	vector<ui> endpoints = get_endpoints(inc_matrix, n, m);
-	cout << "--------------------ENDPOINTS-------------------" << endl;
-	print_vector(endpoints);
-	cout << endl;
-	if (is_regular(n, adj_matrix)) {
-		cout << "The graph is regular" << endl;
-	}
-	else {
-		cout << "The graph isn't regular" << endl;
-	}
-
-	delete_matrix(adj_matrix, n);
-	delete_matrix(inc_matrix, n);
-
-	return 0;
-}
+//int main() {
+//	ui n, m;
+//	short** adj_matrix = read_weighted_matrix("graph2.in", n, m);
+//	cout << "----------------ADJACENCY MATRIX----------------" << endl;
+//	print_matrix(adj_matrix, n, n);
+//	short** inc_matrix = create_inc_matrix(adj_matrix, n, m);
+//	cout << "----------------INCIDENCE MATRIX----------------" << endl;
+//	print_matrix(inc_matrix, n, m);
+//	vector<vector<pair<ui, short>>> adj_list = create_adj_list(inc_matrix, n, m);
+//	cout << "-----------------ADJACENCY LIST-----------------" << endl;
+//	print_adj_list(adj_list, n);
+//	vector<link> links = create_edge_list(adj_list, n);
+//	cout << "--------------------EDGE LIST-------------------" << endl;
+//	print_vector(links);
+//	vector<ui> isolated_nodes = get_isolated_nodes(adj_matrix, n);
+//	cout << "-----------------ISOLATED NODES-----------------" << endl;
+//	print_vector(isolated_nodes);
+//	vector<ui> endpoints = get_endpoints(inc_matrix, n, m);
+//	cout << "--------------------ENDPOINTS-------------------" << endl;
+//	print_vector(endpoints);
+//	cout << endl;
+//	if (is_regular(n, adj_matrix)) {
+//		cout << "The graph is regular" << endl;
+//	}
+//	else {
+//		cout << "The graph isn't regular" << endl;
+//	}
+//
+//	delete_matrix(adj_matrix, n);
+//	delete_matrix(inc_matrix, n);
+//
+//	return 0;
+//}
