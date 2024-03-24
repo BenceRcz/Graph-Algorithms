@@ -53,6 +53,23 @@ vector<vector<ui>> read_unweighted_list(string path, ui& n, ui& m) {
 	return adj_list;
 }
 
+// This function reads a directed unweighted graph from a file named path
+// Returns unweighted adjacency list
+vector<vector<ui>> read_unweighted_directed_list(string path, ui& n, ui& m) {
+	vector<vector<ui>> adj_list;
+	ui from, to;
+	ifstream f(path);
+	f >> n >> m;
+	adj_list.resize(n);
+
+	for (ui i = 0; i < m; ++i) {
+		f >> from >> to;
+		adj_list[from - 1].push_back(to);
+	}
+
+	return adj_list;
+}
+
 // This function prints a vector
 template <typename T>
 void print_vector(const vector<T>& vec) {
@@ -82,3 +99,48 @@ void print_adj_list(const vector<vector<pair<ui, short>>>& adj_list, const ui& n
 		cout << endl;
 	}
 }
+
+// This function searches for a cycle inside a directed graph
+// Returns boolean value
+bool directedContainsCycle(const vector<vector<ui>>& adj_list, const ui& n) {
+	short* visited = new short[n] {0};			// 0 - not visited, 1 - visited, but will return, 2 - won't return
+	ui cur_node = 0;
+	stack<ui> stack;
+	stack.push(1);
+
+	while (!stack.empty()) {
+		cur_node = stack.top();
+		
+		if (visited[cur_node - 1] == 0) {
+			visited[cur_node - 1] = 1;
+
+			for (ui i = 0; i < adj_list[cur_node - 1].size(); ++i) {
+				if (visited[adj_list[cur_node - 1][i] - 1] == 0) {
+					stack.push(adj_list[cur_node - 1][i]);
+				}
+				else {
+					if (visited[adj_list[cur_node - 1][i] - 1] == 1) {
+						return true;
+					}
+				}
+			}
+		}
+		else {
+			stack.pop();
+			if (visited[cur_node - 1] == 1) {
+				visited[cur_node - 1] = 2;
+			}
+		}
+	}
+
+	delete[] visited;
+	return false;
+}
+
+
+//int main() {
+//	ui n, m;
+//	vector<vector<ui>> adj_list = read_unweighted_directed_list("unweighted_graph1.in", n, m);
+//	cout << directedContainsCycle(adj_list, n);
+//	return 0;
+//}

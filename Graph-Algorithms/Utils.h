@@ -3,6 +3,7 @@
 #include <iostream>
 #include <vector>
 #include <fstream>
+#include <stack>
 
 using namespace std;
 
@@ -27,6 +28,13 @@ void print_vector(const vector<T>& vec);
 // This function prints a matrix of size n * m
 void print_matrix(short** a, const ui& row, const ui& col);
 
-
 // This function prints an adjacency list
 void print_adj_list(const vector<vector<pair<ui, short>>>& adj_list, const ui& n);
+
+// This function reads a directed unweighted graph from a file named path
+// Returns unweighted adjacency list
+vector<vector<ui>> read_unweighted_directed_list(string path, ui& n, ui& m);
+
+// This function searches for a cycle inside a directed graph
+// Returns boolean value
+bool directedContainsCycle(const vector<vector<ui>>& adj_list, const ui& n);

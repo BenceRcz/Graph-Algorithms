@@ -67,9 +67,11 @@ void bfs_itr(const vector<vector<ui>>& adj_list, const ui& n, const ui& source_n
 	delete[] visited;
 }
 
-int main() {
-	ui n, m;
-	vector<vector<ui>> adj_list = read_unweighted_list("unweighted_graph1.in", n, m);
-	bfs_itr(adj_list, n, 1);
-	return 0;
-}
+//int main() {
+//	ui n, m;
+//	vector<vector<ui>> adj_list = read_unweighted_list("unweighted_graph1.in", n, m);
+//	dfs_itr(adj_list, n, 1);
+//	cout << endl;
+//	bfs_itr(adj_list, n, 1);
+//	return 0;
+//}
