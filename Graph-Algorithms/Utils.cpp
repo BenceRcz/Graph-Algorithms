@@ -137,10 +137,46 @@ bool directedContainsCycle(const vector<vector<ui>>& adj_list, const ui& n) {
 	return false;
 }
 
+// This function returns the K. neighbour of a node
+vector<ui> kNeighbour(const vector<vector<ui>>& adj_list, const ui& n, const ui& node, const ui& k) {
+	vector<ui> neighbours;
+	queue<ui> queue;
+	ui cur_node, cur_dist = 1;
+	ui* dist = new ui[n]{ 0 };
+	bool* visited = new bool[n] {0};
+	queue.push(node);
 
-//int main() {
-//	ui n, m;
-//	vector<vector<ui>> adj_list = read_unweighted_directed_list("unweighted_graph1.in", n, m);
-//	cout << directedContainsCycle(adj_list, n);
-//	return 0;
-//}
+	while (!queue.empty()) {
+		cur_node = queue.front();
+		queue.pop();
+		
+		if (!visited[cur_node - 1]) {
+			visited[cur_node - 1] = true;
+			if (dist[cur_node - 1] == k) {
+				neighbours.push_back(cur_node);
+			}
+		}
+
+		for (ui i = 0; i < adj_list[cur_node - 1].size(); ++i) {
+			if (!visited[ adj_list[cur_node - 1][i] - 1 ]) {
+				queue.push(adj_list[cur_node - 1][i]);
+
+				if (dist[ adj_list[cur_node - 1][i] - 1 ] == 0 && adj_list[ cur_node - 1 ][i] != node) {
+					dist[ adj_list[cur_node - 1][i] - 1 ] = cur_dist;
+				}
+			}
+		}
+
+		++cur_dist;
+	}
+
+	return neighbours;
+}
+
+int main() {
+	ui n, m;
+	vector<vector<ui>> adj_list = read_unweighted_directed_list("unweighted_graph1.in", n, m);
+	vector<ui> neighbours = kNeighbour(adj_list, n, 1, 1);
+	print_vector(neighbours);
+	return 0;
+}

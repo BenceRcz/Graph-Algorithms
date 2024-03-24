@@ -4,6 +4,7 @@
 #include <vector>
 #include <fstream>
 #include <stack>
+#include <queue>
 
 using namespace std;
 
@@ -38,3 +39,6 @@ vector<vector<ui>> read_unweighted_directed_list(string path, ui& n, ui& m);
 // This function searches for a cycle inside a directed graph
 // Returns boolean value
 bool directedContainsCycle(const vector<vector<ui>>& adj_list, const ui& n);
+
+// This function returns the K. neighbour of a node
+vector<ui> kNeighbour(const vector<vector<ui>>& adj_list, const ui& n, const ui& node, const ui& k);
