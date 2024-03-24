@@ -42,3 +42,7 @@ bool directedContainsCycle(const vector<vector<ui>>& adj_list, const ui& n);
 
 // This function returns the K. neighbour of a node
 vector<ui> kNeighbour(const vector<vector<ui>>& adj_list, const ui& n, const ui& node, const ui& k);
+
+// This function sorts the given Graph in a topological order
+// Returns a stack containing the order
+stack<ui> TopoSort(const vector<vector<ui>>& adj_list, const ui& n);
