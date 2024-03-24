@@ -1,10 +1,6 @@
-#include <iostream>
-#include <fstream>
-#include <vector>
+#include "Utils.h"
 
 using namespace std;
-
-#define ui unsigned int
 
 class link {
 private:
@@ -24,41 +20,6 @@ public:
 		return os;
 	}
 };
-
-// This function creates a short matrix of size row * col
-short** create_matrix(const ui& row, const ui& col) {
-	short** a = new short* [row] {};
-	for (ui i = 0; i < row; ++i) {
-		a[i] = new short[col] {0};
-	}
-	return a;
-}
-
-// This function reads the input from file named path
-// Returns adjacency matrix
-short** read(string path, ui& n, ui& m) {
-	ui from, to;
-	short weight;
-	ifstream f(path);
-	f >> n >> m;
-	short** adj_matrix = create_matrix(n, n);
-
-	for (ui i = 0; i < m; ++i) {
-		f >> from >> to >> weight;
-		adj_matrix[from - 1][to - 1] = weight;
-		adj_matrix[to - 1][from - 1] = weight;
-	}
-
-	return adj_matrix;
-}
-
-// This function deletes a matrix with a row count of row
-void delete_matrix(short** a, const ui& row) {
-	for (ui i = 0; i < row; ++i) {
-		delete[] a[i];
-	}
-	delete[] a;
-}
 
 // This function creates and returns an incidence matrix out of a given adj_matrix
 short** create_inc_matrix(short** adj_matrix, const ui& n, const ui& m) {
@@ -181,66 +142,36 @@ bool is_regular(const ui& n, short** adj_matrix) {
 	return true;
 }
 
-// This function prints a vector
-template <typename T>
-void print_vector(const vector<T>& vec) {
-	for (ui i = 0; i < vec.size(); ++i) {
-		cout << vec[i] << endl;
-	}
-}
-
-// This function prints a matrix of size n * m
-void print_matrix(short** a, const ui& row, const ui& col) {
-	for (ui i = 0; i < row; ++i) {
-		for (ui j = 0; j < col; ++j) {
-			cout << "   " << a[i][j];
-		}
-		cout << endl;
-	}
-	cout << endl;
-}
-
-// This function prints an adjacency list
-void print_adj_list(const vector<vector<pair<ui, short>>>& adj_list, const ui& n) {
-	for (ui i = 0; i < n; ++i) {
-		cout << i + 1 << ": ";
-		for (ui j = 0; j < adj_list[i].size(); ++j) {
-			cout << "-> " << adj_list[i][j].first << ": " << adj_list[i][j].second << " ";
-		}
-		cout << endl;
-	}
-}
-
-int main() {
-	ui n, m;
-	short** adj_matrix = read("graph2.in", n, m);
-	cout << "----------------ADJACENCY MATRIX----------------" << endl;
-	print_matrix(adj_matrix, n, n);
-	short** inc_matrix = create_inc_matrix(adj_matrix, n, m);
-	cout << "----------------INCIDENCE MATRIX----------------" << endl;
-	print_matrix(inc_matrix, n, m);
-	vector<vector<pair<ui, short>>> adj_list = create_adj_list(inc_matrix, n, m);
-	cout << "-----------------ADJACENCY LIST-----------------" << endl;
-	print_adj_list(adj_list, n);
-	vector<link> links = create_edge_list(adj_list, n);
-	cout << "--------------------EDGE LIST-------------------" << endl;
-	print_vector(links);
-	vector<ui> isolated_nodes = get_isolated_nodes(adj_matrix, n);
-	cout << "-----------------ISOLATED NODES-----------------" << endl;
-	print_vector(isolated_nodes);
-	vector<ui> endpoints = get_endpoints(inc_matrix, n, m);
-	cout << "--------------------ENDPOINTS-------------------" << endl;
-	print_vector(endpoints);
-	cout << endl;
-	if (is_regular(n, adj_matrix)) {
-		cout << "The graph is regular" << endl;
-	}
-	else {
-		cout << "The graph isn't regular" << endl;
-	}
-
-	delete_matrix(adj_matrix, n);
-	delete_matrix(inc_matrix, n);
-
-	return 0;
-}
+//int main() {
+//	ui n, m;
+//	short** adj_matrix = read_weighted_matrix("graph2.in", n, m);
+//	cout << "----------------ADJACENCY MATRIX----------------" << endl;
+//	print_matrix(adj_matrix, n, n);
+//	short** inc_matrix = create_inc_matrix(adj_matrix, n, m);
+//	cout << "----------------INCIDENCE MATRIX----------------" << endl;
+//	print_matrix(inc_matrix, n, m);
+//	vector<vector<pair<ui, short>>> adj_list = create_adj_list(inc_matrix, n, m);
+//	cout << "-----------------ADJACENCY LIST-----------------" << endl;
+//	print_adj_list(adj_list, n);
+//	vector<link> links = create_edge_list(adj_list, n);
+//	cout << "--------------------EDGE LIST-------------------" << endl;
+//	print_vector(links);
+//	vector<ui> isolated_nodes = get_isolated_nodes(adj_matrix, n);
+//	cout << "-----------------ISOLATED NODES-----------------" << endl;
+//	print_vector(isolated_nodes);
+//	vector<ui> endpoints = get_endpoints(inc_matrix, n, m);
+//	cout << "--------------------ENDPOINTS-------------------" << endl;
+//	print_vector(endpoints);
+//	cout << endl;
+//	if (is_regular(n, adj_matrix)) {
+//		cout << "The graph is regular" << endl;
+//	}
+//	else {
+//		cout << "The graph isn't regular" << endl;
+//	}
+//
+//	delete_matrix(adj_matrix, n);
+//	delete_matrix(inc_matrix, n);
+//
+//	return 0;
+//}
