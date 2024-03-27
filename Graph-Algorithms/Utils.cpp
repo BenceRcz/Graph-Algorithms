@@ -199,6 +199,7 @@ stack<ui> TopoSort(const vector<vector<ui>>& adj_list, const ui& n) {
 		else {
 			if (visits[cur_node - 1] == 1) {
 				++visits[cur_node - 1];
+				order.push(cur_node);
 			}
 
 			stack.pop();
@@ -212,7 +213,6 @@ stack<ui> TopoSort(const vector<vector<ui>>& adj_list, const ui& n) {
 int main() {
 	ui n, m;
 	vector<vector<ui>> adj_list = read_unweighted_directed_list("unweighted_graph1.in", n, m);
-	vector<ui> neighbours = kNeighbour(adj_list, n, 1, 1);
-	print_vector(neighbours);
+	stack<ui> topo = TopoSort(adj_list, n);
 	return 0;
 }
