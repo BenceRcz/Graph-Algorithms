@@ -1,5 +1,17 @@
 #include "Utils.h"
 
+link::link(ui from, ui to, short value) {
+	this->from = from;
+	this->to = to;
+	this->weight = value;
+}
+
+std::ostream& operator << (std::ostream& os, const link& obj) {
+	os << obj.from + 1 << " -> " << obj.to << ": " << obj.weight;
+	return os;
+}
+
+
 // This function creates a short matrix of size row * col
 short** create_matrix(const ui& row, const ui& col) {
 	short** a = new short* [row] {};
@@ -68,6 +80,23 @@ vector<vector<ui>> read_unweighted_directed_list(string path, ui& n, ui& m) {
 	}
 
 	return adj_list;
+}
+
+// This function reads an undirected weighted edje list from a given file
+// Returns weighted edje list
+vector<link> read_weighted_edje_list(string path, ui& n, ui& m) {
+	vector<link> edj_list;
+	ui from, to;
+	short weight;
+	ifstream f(path);
+	f >> n >> m;
+
+	for (ui i = 0; i < m; ++i) {
+		f >> from >> to >> weight;
+		edj_list.push_back(link(from, to, weight));
+	}
+
+	return edj_list;
 }
 
 // This function prints a vector
@@ -209,10 +238,10 @@ stack<ui> TopoSort(const vector<vector<ui>>& adj_list, const ui& n) {
 	delete[] visits;
 	return order;
 }
-
-int main() {
-	ui n, m;
-	vector<vector<ui>> adj_list = read_unweighted_directed_list("unweighted_graph1.in", n, m);
-	stack<ui> topo = TopoSort(adj_list, n);
-	return 0;
-}
+//
+//int main() {
+//	ui n, m;
+//	vector<vector<ui>> adj_list = read_unweighted_directed_list("unweighted_graph1.in", n, m);
+//	stack<ui> topo = TopoSort(adj_list, n);
+//	return 0;
+//}

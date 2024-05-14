@@ -24,6 +24,9 @@
     <ClCompile Include="Utils.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SpanningTree.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Utils.h">
@@ -35,6 +38,9 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="unweighted_graph1.in">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="weighted_graph1.in">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

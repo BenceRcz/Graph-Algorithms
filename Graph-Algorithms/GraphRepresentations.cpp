@@ -2,25 +2,6 @@
 
 using namespace std;
 
-class link {
-private:
-	ui from;
-	ui to;
-	short weight;
-
-public:
-	link(ui from, ui to, short value) {
-		this->from = from;
-		this->to = to;
-		this->weight = value;
-	}
-
-	friend std::ostream& operator << (std::ostream& os, const link& obj) {
-		os << obj.from + 1 << " -> " << obj.to << ": " << obj.weight;
-		return os;
-	}
-};
-
 // This function creates and returns an incidence matrix out of a given adj_matrix
 short** create_inc_matrix(short** adj_matrix, const ui& n, const ui& m) {
 	short** inc_matrix = create_matrix(n, m);
