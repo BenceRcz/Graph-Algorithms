@@ -84,7 +84,7 @@ vector<vector<ui>> read_unweighted_directed_list(string path, ui& n, ui& m) {
 
 // This function reads an undirected weighted edje list from a given file
 // Returns weighted edje list
-vector<link> read_weighted_edje_list(string path, ui& n, ui& m) {
+vector<link> read_weighted_edge_list(string path, ui& n, ui& m) {
 	vector<link> edj_list;
 	ui from, to;
 	short weight;
