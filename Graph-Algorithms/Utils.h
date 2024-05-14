@@ -11,12 +11,11 @@ using namespace std;
 #define ui unsigned int
 
 class link {
-private:
-	ui from;
-	ui to;
-	short weight;
-
 public:
+    ui from;
+    ui to;
+    short weight;
+
 	link() = default;
 	link(ui from, ui to, short value);
 	friend std::ostream& operator << (std::ostream& os, const link& obj);
@@ -72,6 +71,10 @@ struct DisjointSets {
         delete[] rnk;
     }
 };
+
+// This function declares a compare function for 2 link objects
+// Returns if a is smaller then b
+bool compare(link a, link b);
 
 // This function creates a short matrix of size row * col
 short** create_matrix(const ui& row, const ui& col);

@@ -11,7 +11,6 @@ std::ostream& operator << (std::ostream& os, const link& obj) {
 	return os;
 }
 
-
 // This function creates a short matrix of size row * col
 short** create_matrix(const ui& row, const ui& col) {
 	short** a = new short* [row] {};
@@ -129,6 +128,12 @@ void print_adj_list(const vector<vector<pair<ui, short>>>& adj_list, const ui& n
 	}
 }
 
+// This function declares a compare function for 2 link objects
+// Returns if a is smaller then b
+bool compare(link a, link b) {
+	return a.weight < b.weight;
+}
+
 // This function searches for a cycle inside a directed graph
 // Returns boolean value
 bool directedContainsCycle(const vector<vector<ui>>& adj_list, const ui& n) {
@@ -238,6 +243,7 @@ stack<ui> TopoSort(const vector<vector<ui>>& adj_list, const ui& n) {
 	delete[] visits;
 	return order;
 }
+
 //
 //int main() {
 //	ui n, m;
