@@ -11,6 +11,10 @@ std::ostream& operator << (std::ostream& os, const link& obj) {
 	return os;
 }
 
+bool operator < (const link& a, const link& b) {
+	return a.weight < b.weight;
+}
+
 // This function creates a short matrix of size row * col
 short** create_matrix(const ui& row, const ui& col) {
 	short** a = new short* [row] {};
@@ -130,7 +134,7 @@ void print_adj_list(const vector<vector<pair<ui, short>>>& adj_list, const ui& n
 
 // This function declares a compare function for 2 link objects
 // Returns if a is smaller then b
-bool compare(link a, link b) {
+bool compareLinks(link a, link b) {
 	return a.weight < b.weight;
 }
 
