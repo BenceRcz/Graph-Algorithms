@@ -41,7 +41,7 @@ struct DisjointSets {
         parent = new ui[n + 1];
         rnk = new ui[n + 1];
 
-        for (ui i = 0; i < n; ++i) {
+        for (ui i = 0; i <= n; ++i) {
             rnk[i] = 1;
             parent[i] = i;
         }

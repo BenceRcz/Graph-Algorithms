@@ -20,7 +20,7 @@ vector<link> mst_kruskal(vector<link>& edge_list, const ui& n, const ui& m) {
 		set_from = disjSet.find(edge_list[i].from);
 		set_to = disjSet.find(edge_list[i].to);
 
-		if (set_from == set_to) {
+		if (set_from != set_to) {
 			mst.push_back(link(edge_list[i].from, edge_list[i].to, edge_list[i].weight));
 			disjSet.merge(set_from, set_to);
 		}
